@@ -63,12 +63,14 @@ export default{
             Api.login(this.form)
                 .then(response => {
                     this.loading = false
-                    // commit store mutation
-                    this.$store.dispatch('user/login', response)
-                    // redirect to intended route
-                    this.$router.push({
-                        path: this.intendedRoute
-                    })
+                    if(response.code == 'A'){
+                        // commit store mutation
+                        this.$store.dispatch('user/login', response)
+                        // redirect to intended route
+                        this.$router.push({
+                            path: this.intendedRoute
+                        })
+                    }
                 })
                 .catch(error => {
                     console.log(error)

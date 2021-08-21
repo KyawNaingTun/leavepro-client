@@ -1,7 +1,7 @@
 <template>
     <div class="mt-">
         <datatable
-            title="Leave Report"
+            title="Leave Reports"
             :columns="tableColumns"
             :rows="tableRows"
             :perPage="[10, 20, 30, 40, 50, 100]"
@@ -22,7 +22,7 @@
                     {
                         label: "ID",
                         field: "id",
-                        numeric: false,
+                        numeric: true,
                         html: false
                     },
                     {
@@ -55,6 +55,12 @@
                         numeric: false,
                         html: false
                     },
+                    {
+                        label: "Created At",
+                        field: "created_at",
+                        numeric: false,
+                        html: false
+                    }
                 ],
                 tableRows: [],
             }

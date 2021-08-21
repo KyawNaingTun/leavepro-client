@@ -1,10 +1,6 @@
 <template>
     <div>
-        <div>
-            <div class="my-4">
-                <t-button @click="showLeaveModal=!showLeaveModal" type="button">Create New Leave</t-button>
-            </div>
-            
+        <div class="mt-10">
             <t-modal v-model="showLeaveModal" header="Leave Form">
                 
                 <div class="mb-4">
@@ -31,86 +27,46 @@
 					<label class="label">Reason</label>
 					<t-textarea v-model="leaveForm.reason" value="" aria-placeholder="Please write down your reason here" />
 				</div>
-                
-                <pre>{{ leaveForm }}</pre>
 
-				<t-button class="button is-info" @click="addNewItem">Add Item</t-button>
+				<t-button class="button is-info" @click="addNewLeave">Submit</t-button>
             </t-modal>
 
         </div>
-        <calendar-view
-            :items="items"
-			:show-date="showDate"
-            :disable-past="false"
-            :starting-day-of-week="startingDayOfWeek"
-            @click-date="onClickDay"
-			class="theme-default holiday-us-traditional holiday-us-official">
-			<template #header="{ headerProps }">
-				<calendar-view-header
-					:header-props="headerProps"
-					@input="setShowDate" />
-			</template>
-		</calendar-view>
+        <full-calendar :config="calendarConfig" :events="calendarEvents" @day-click="dateClick"></full-calendar>
     </div>
 </template>
 <script>
     import Api from '../network/Api'
     import TModal from 'vue-tailwind/dist/t-modal'
-    import { CalendarView, CalendarViewHeader} from "vue-simple-calendar"
-	
-    // import "../../node_modules/vue-simple-calendar/static/css/gcal.css"
-    import "../assets/calendar.css"
-    import "../../node_modules/vue-simple-calendar/static/css/holidays-us.css"
+    import { FullCalendar } from 'vue-full-calendar'
 
 export default {
     name: 'CalendarPage',
+    components: {
+        FullCalendar,
+        TModal
+    },
     data: function() {
         return { 
             showDate: new Date(),
             showLeaveModal: false,
             startingDayOfWeek: 1,
             leaveTypes: [],
+            calendarConfig: {
+                defaultView: 'month',
+                weekends: true,
+                firstDay: 1
+            },
             leaveForm: {
                 startDate: '',
                 endDate: '',
                 reason: '',
                 leaveType: '',
             },
-            items: [
-                {
-					id: "e4",
-					startDate: "2021-08-24",
-					title: "Independence Day",
-					classes: "red",
-					url: "https://en.wikipedia.org/wiki/Birthday",
-				},
-                // {
-				// 	id: "e5",
-				// 	startDate: "2021-08-24",
-				// 	title: "Testing",
-				// 	classes: "purple",
-				// 	url: "https://en.wikipedia.org/wiki/Birthday",
-				// },
-                // {
-				// 	id: "e6",
-				// 	startDate: "2021-08-24",
-				// 	title: "Testing",
-				// 	classes: "orange",
-				// 	url: "https://en.wikipedia.org/wiki/Birthday",
-				// },
-            ],
-            itemForm: {
-                startDate: '',
-                endDate: '',
-                title: ''
-            }
+            calendarEvents: []
         }
     },
-    components: {
-        CalendarView,
-        CalendarViewHeader,
-        TModal
-    },
+    
     computed: {
 		
 	},
@@ -125,7 +81,31 @@ export default {
         getCalendarData(){
             Api.getCalendarData()
                 .then(response => {
-                    this.items = response.holidays.concat(response.leaves)
+                    // eslint-disable-next-line no-unused-vars
+                    var leaves = response.leaves.map((el, i)=>{
+                        return {
+                                allDay: true,
+                                textColor: "white", 
+                                title : `#${el.id} ${el.employee_name}(${el.leave_type_name})`, 
+                                start: el.start_date.substring(0,10),//new Date(el.start_date.substring(0,10)), 
+                                end: el.end_date.substring(0,10),//new Date(el.end_date.substring(0,10))
+                            }
+                        }
+                    );
+                    var holidays = response.holidays.map((el, i)=>{
+                        console.log(i)
+                        return {
+                                allDay: true,
+                                textColor: "red",
+                                borderColor: '#fca5a5',
+                                backgroundColor: '#f3f4f6',
+                                title : el.title, 
+                                start: new Date(el.startDate), 
+                                end: new Date(el.endDate)
+                            }
+                        }
+                    );
+                    this.calendarEvents = holidays.concat(leaves);
                 })
                 .catch(error => {
                     console.log(error)
@@ -140,19 +120,28 @@ export default {
                     console.log(error)
                 })
         },
-        onClickDay(d){
-            console.log('Clicked day')
-            console.log(d.toLocaleDateString())
-            this.leaveForm.startDate = d.toLocaleDateString('en-GB')
-            this.leaveForm.endDate = d.toLocaleDateString('en-GB')
+        dateClick(date){
+            this.leaveForm.startDate = date.locale('en-GB').format('L')
+            this.leaveForm.endDate = date.locale('en-GB').format('L')
             this.showLeaveModal = true
         },
-        addNewItem() {
+        clearFormData() {
+            this.leaveForm = {
+                startDate: '',
+                endDate: '',
+                reason: '',
+                leaveType: ''
+            }
+        },
+        addNewLeave() {
             Api.createLeave(this.leaveForm)
+                // eslint-disable-next-line no-unused-vars
                 .then(response => {
-                    this.items.push(response)
+                    //refresh
+                    this.getCalendarData()
                     //close modal
-                    this.showModal = false
+                    this.showLeaveModal = false
+                    this.clearFormData()
                 })
                 .catch(error => {
                     console.log(error)

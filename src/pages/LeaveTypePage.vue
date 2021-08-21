@@ -28,6 +28,13 @@
             :columns="tableColumns"
             :rows="tableRows"
             :perPage="[10, 20, 30, 40, 50, 100]"
+            :clickable="false"
+            :sortable="false"
+            :exactSearch="false"
+            :searchable="false"
+            :paginate="false"
+            :exportable="false"
+            :printable="false"
         >
             <th slot="thead-tr">
                 Actions
@@ -88,6 +95,12 @@
                         field: "days_per_year",
                         numeric: false,
                         html: false
+                    },
+                    {
+                        label: "Created At",
+                        field: "created_at",
+                        numeric: false,
+                        html: false
                     }
                 ],
                 tableRows: [],
@@ -97,6 +110,13 @@
             this.fetchLeaveTypeData()
         },
         methods: {
+            clearFormData() {
+                this.form = {
+                    name: '',
+                    description: '',
+                    days_per_year: ''
+                }
+            },
             createLeaveType(){
                 console.log('submit')
                 Api.createLeaveType(this.form)
@@ -106,6 +126,8 @@
                         this.fetchLeaveTypeData()
 
                         this.showLeaveTypeFormModal = false
+
+                        this.clearFormData()
                     })
                     .catch(error => {
                         console.log(error)

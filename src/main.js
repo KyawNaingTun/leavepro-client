@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import './plugins/plugins'
+import "../node_modules/fullcalendar/dist/fullcalendar.min.css";
 import './assets/main.css'
 import VueRouter from 'vue-router'
 import router from './router'

@@ -7,18 +7,18 @@
         <t-modal v-model="showHolidayFormModal" header="Holiday Create Form">
 
             <div class="mb-4">
-                <label class="label">Holiday Name</label>
+                <label class="label text-sm">Holiday Name</label>
                 <t-input v-model="holidayForm.name" value="" placeholder="Holiday name" />
             </div>
 
             <div class="mb-4">
-                <label class="label">Start date</label>
-                <t-input v-model="holidayForm.start_date" value="" placeholder="DD/MM/YYYY" />
+                <label class="label text-sm">Start date (eg. 2021-12-30)</label>
+                <t-input v-model="holidayForm.start_date" value="" placeholder="YYYY-MM-DD" />
             </div>
 
             <div class="mb-4">
-                <label class="label">End date</label>
-                <t-input v-model="holidayForm.end_date" value="" placeholder="DD/MM/YYYY" />
+                <label class="label text-sm">End date (eg. 2021-12-30)</label>
+                <t-input v-model="holidayForm.end_date" value="" placeholder="YYYY-MM-DD" />
             </div>
 
             <t-button class="button is-info" @click="createHoliday()">Create</t-button>
@@ -28,6 +28,13 @@
             :columns="tableColumns"
             :rows="tableRows"
             :perPage="[10, 20, 30, 40, 50, 100]"
+            :clickable="false"
+            :sortable="false"
+            :exactSearch="false"
+            :searchable="false"
+            :paginate="false"
+            :exportable="false"
+            :printable="false"
         >
             <th slot="thead-tr">
                 Actions
@@ -103,6 +110,13 @@
             this.fetchHolidayData()
         },
         methods: {
+            clearFormData() {
+                this.holidayForm = {
+                    name: '',
+                    start_date: '',
+                    end_date: ''
+                }
+            },
             createHoliday(){
                 Api.createHoliday(this.holidayForm)
                     .then(response => {
@@ -111,6 +125,8 @@
                         this.fetchHolidayData()
 
                         this.showHolidayFormModal = false
+
+                        this.clearFormData()
                     })
                     .catch(error => {
                         console.log(error)

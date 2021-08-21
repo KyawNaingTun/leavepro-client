@@ -36,7 +36,7 @@
                         <img class="hidden lg:block h-8 w-auto" src="../assets/logo-long.png" alt="Workflow">
                         </div>
                         <div class="hidden sm:block sm:ml-6">
-                        <div class="flex space-x-4">
+                        <div v-if="currentUser" class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <router-link class="block px-4 py-2 text-sm text-white" :to="{ name : 'home' }">
                                 Leave Calendar

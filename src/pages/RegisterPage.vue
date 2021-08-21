@@ -63,6 +63,12 @@
                 </div>
                 <div class="flex items-center justify-between">
                     <button
+                        v-if="loading"
+                        class="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-gray-600 focus:bg-gray-700 cursor-wait"
+                        type="button">Loading...
+                    </button>
+                    <button
+                        v-else
                         @click="register()"
                         class="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700"
                         type="button">Register

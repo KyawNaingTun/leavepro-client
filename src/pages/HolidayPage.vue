@@ -21,7 +21,20 @@
                 <t-input v-model="holidayForm.end_date" value="" placeholder="YYYY-MM-DD" />
             </div>
 
-            <t-button class="button is-info" @click="createHoliday()">Create</t-button>
+            <button
+                v-if="loading"
+                class="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-gray-600 focus:bg-gray-700 cursor-wait"
+                type="button">Loading...
+            </button>
+            <button
+                v-else
+                @click="createHoliday()"
+                class="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700"
+                type="button"
+            >
+            Submit
+            </button>
+
         </t-modal>
         <datatable
             title="Holidays"
@@ -65,6 +78,7 @@
         },
         data() {
             return {
+                loading: false,
                 showHolidayFormModal: false,
                 holidayForm: {
                     name: '',
@@ -118,8 +132,10 @@
                 }
             },
             createHoliday(){
+                this.loading = true
                 Api.createHoliday(this.holidayForm)
                     .then(response => {
+                        this.loading = false
                         console.log(response)
                         //refresh list
                         this.fetchHolidayData()
@@ -129,6 +145,7 @@
                         this.clearFormData()
                     })
                     .catch(error => {
+                        this.loading = false
                         console.log(error)
                     })
             },

@@ -21,7 +21,19 @@
                 <t-input v-model="form.days_per_year" value="" placeholder="10" />
             </div>
 
-            <t-button class="button is-info" @click="createLeaveType">Create</t-button>
+            <button
+                v-if="loading"
+                class="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-gray-600 focus:bg-gray-700 cursor-wait"
+                type="button">Loading...
+            </button>
+            <button
+                v-else
+                @click="createLeaveType()"
+                class="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700"
+                type="button"
+            >
+            Submit
+            </button>
         </t-modal>
         <datatable
             title="LeaveTypes"
@@ -65,6 +77,7 @@
         },
         data() {
             return {
+                loading: false,
                 showLeaveTypeFormModal: false,
                 form: {
                     name: '',
@@ -118,10 +131,11 @@
                 }
             },
             createLeaveType(){
-                console.log('submit')
+                this.loading = true
                 Api.createLeaveType(this.form)
+                    // eslint-disable-next-line no-unused-vars
                     .then(response => {
-                        console.log(response)
+                        this.loading = false
                         //refresh list
                         this.fetchLeaveTypeData()
 
@@ -130,6 +144,7 @@
                         this.clearFormData()
                     })
                     .catch(error => {
+                        this.loading = false
                         console.log(error)
                     })
             },

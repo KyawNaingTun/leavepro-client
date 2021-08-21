@@ -28,7 +28,19 @@
 					<t-textarea v-model="leaveForm.reason" value="" aria-placeholder="Please write down your reason here" />
 				</div>
 
-				<t-button class="button is-info" @click="addNewLeave">Submit</t-button>
+                <button
+                    v-if="loading"
+                    class="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-gray-600 focus:bg-gray-700 cursor-wait"
+                    type="button">Loading...
+                </button>
+                <button
+                    v-else
+                    @click="addNewLeave()"
+                    class="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700"
+                    type="button"
+                >
+                Submit
+                </button>
             </t-modal>
 
         </div>
@@ -48,6 +60,7 @@ export default {
     },
     data: function() {
         return { 
+            loading: false,
             showDate: new Date(),
             showLeaveModal: false,
             startingDayOfWeek: 1,
@@ -134,9 +147,11 @@ export default {
             }
         },
         addNewLeave() {
+            this.loading = true
             Api.createLeave(this.leaveForm)
                 // eslint-disable-next-line no-unused-vars
                 .then(response => {
+                    this.loading = false
                     //refresh
                     this.getCalendarData()
                     //close modal
@@ -144,6 +159,7 @@ export default {
                     this.clearFormData()
                 })
                 .catch(error => {
+                    this.loading = false
                     console.log(error)
                 })
 		},

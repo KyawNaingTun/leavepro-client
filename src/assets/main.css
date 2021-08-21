@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url(http://fonts.googleapis.com/icon?family=Material+Icons);
+
+table {
+    width: 100%;
+    text-align: left;
+}

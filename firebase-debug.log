@@ -1,0 +1,60 @@
+[debug] [2021-08-21T08:28:38.712Z] ----------------------------------------------------------------------
+[debug] [2021-08-21T08:28:38.716Z] Command:       /usr/local/bin/node /Users/kyawnaingtun/.npm-packages/bin/firebase init
+[debug] [2021-08-21T08:28:38.716Z] CLI Version:   9.16.5
+[debug] [2021-08-21T08:28:38.716Z] Platform:      darwin
+[debug] [2021-08-21T08:28:38.717Z] Node Version:  v12.14.1
+[debug] [2021-08-21T08:28:38.718Z] Time:          Sat Aug 21 2021 14:58:38 GMT+0630 (Myanmar Time)
+[debug] [2021-08-21T08:28:38.718Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-08-21T08:28:38.729Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-08-21T08:28:38.730Z] > authorizing via signed-in user (kyawnainghtun93@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/kyawnaingtun/Development/jsapp/leavepro-client
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2021-08-21T08:30:11.131Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2021-08-21T08:30:11.922Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2021-08-21T08:30:11.922Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project leavepro-fbbdb (leavepro) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2021-08-21T08:30:45.754Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2021-08-21T08:30:45.949Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2021-08-21T08:30:45.949Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"8.10.0","browserURL":"https://www.gstatic.com/firebasejs/8.10.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/8.10.0/firebase.tgz"},"live":{"version":"8.10","browserURL":"https://www.gstatic.com/firebasejs/live/8.10/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/8.10/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/8.10.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js","database":"https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js","firestore":"https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js","functions":"https://www.gstatic.com/firebasejs/8.10.0/firebase-functions.js","installations":"https://www.gstatic.com/firebasejs/8.10.0/firebase-installations.js","messaging":"https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js","storage":"https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/8.10.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/8.10.0/firebase-remote-config.js","firestore.memory":"https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.memory.js"}}
+[info] i  Skipping write of public/index.html 
+[info] 
+[info] i  Detected a .git folder at /Users/kyawnaingtun/Development/jsapp/leavepro-client 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=379146753&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2021-08-21T08:31:19.517Z] >>> HTTP REQUEST POST https://github.com/login/oauth/access_token  
+ {"client_id":"89cf50f02ac6aaed3484","client_secret":"3330d14abc895d9a74d5f17cd7a00711fa2c5bf0","code":"4e69605c7a2d800ed514","redirect_uri":"http://localhost:9005","state":"379146753"}
+[debug] [2021-08-21T08:31:20.021Z] <<< HTTP RESPONSE 200 {"server":"GitHub.com","date":"Sat, 21 Aug 2021 08:31:19 GMT","content-type":"application/json; charset=utf-8","transfer-encoding":"chunked","vary":"X-PJAX, Accept-Encoding, Accept, X-Requested-With","permissions-policy":"interest-cohort=()","etag":"W/\"a66a34154f70c1beee5ead7fa8f952f6\"","cache-control":"max-age=0, private, must-revalidate","strict-transport-security":"max-age=31536000; includeSubdomains; preload","x-frame-options":"deny","x-content-type-options":"nosniff","x-xss-protection":"0","referrer-policy":"origin-when-cross-origin, strict-origin-when-cross-origin","expect-ct":"max-age=2592000, report-uri=\"https://api.github.com/_private/browser/errors\"","content-security-policy":"default-src 'none'; base-uri 'self'; block-all-mixed-content; connect-src 'self' uploads.github.com www.githubstatus.com collector.githubapp.com api.github.com github-cloud.s3.amazonaws.com github-production-repository-file-5c1aeb.s3.amazonaws.com github-production-upload-manifest-file-7fdce7.s3.amazonaws.com github-production-user-asset-6210df.s3.amazonaws.com cdn.optimizely.com logx.optimizely.com/v1/events translator.github.com wss://alive.github.com; font-src github.githubassets.com; form-action 'self' github.com gist.github.com; frame-ancestors 'none'; frame-src render.githubusercontent.com viewscreen.githubusercontent.com; img-src 'self' data: github.githubassets.com identicons.github.com collector.githubapp.com github-cloud.s3.amazonaws.com secured-user-images.githubusercontent.com/ *.githubusercontent.com; manifest-src 'self'; media-src 'none'; script-src github.githubassets.com; style-src 'unsafe-inline' github.githubassets.com; worker-src github.com/socket-worker-3f088aa2.js gist.github.com/socket-worker-3f088aa2.js","x-github-request-id":"1EAF:19AC:EF2C9:1104F3:6120B9D7"}
+[debug] [2021-08-21T08:31:20.027Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2021-08-21T08:31:20.484Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2021-08-21T08:31:20.484Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"KyawNaingTun","id":6079250,"node_id":"MDQ6VXNlcjYwNzkyNTA=","avatar_url":"https://avatars.githubusercontent.com/u/6079250?v=4","gravatar_id":"","url":"https://api.github.com/users/KyawNaingTun","html_url":"https://github.com/KyawNaingTun","followers_url":"https://api.github.com/users/KyawNaingTun/followers","following_url":"https://api.github.com/users/KyawNaingTun/following{/other_user}","gists_url":"https://api.github.com/users/KyawNaingTun/gists{/gist_id}","starred_url":"https://api.github.com/users/KyawNaingTun/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/KyawNaingTun/subscriptions","organizations_url":"https://api.github.com/users/KyawNaingTun/orgs","repos_url":"https://api.github.com/users/KyawNaingTun/repos","events_url":"https://api.github.com/users/KyawNaingTun/events{/privacy}","received_events_url":"https://api.github.com/users/KyawNaingTun/received_events","type":"User","site_admin":false,"name":"Kyaw Naing Tun","company":"Full Stack Developer","blog":"","location":"Monywa","email":"kyawnainghtun93@gmail.com","hireable":true,"bio":"Simplicity is Complex","twitter_username":null,"public_repos":73,"public_gists":6,"followers":65,"following":168,"created_at":"2013-12-01T16:25:08Z","updated_at":"2021-08-16T14:32:44Z","private_gists":4,"total_private_repos":13,"owned_private_repos":13,"disk_usage":202297,"collaborators":2,"two_factor_authentication":false,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] ✔  Success! Logged into GitHub as KyawNaingTun 
+[info] 

@@ -3,7 +3,7 @@
         <div class="w-full max-w-md pt-40">
             <form class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4">
                 <!-- @csrf -->
-                <div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
+                <div class="text-gray-800 text-2xl flex justify-center py-2 mb-4">
                     Employee Login
                 </div>
                 <div class="mb-4">

@@ -3,7 +3,7 @@
         <div class="w-full max-w-md pt-40">
             <form class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4">
                 <!-- @csrf -->
-                <div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
+                <div class="text-gray-800 text-2xl flex justify-center py-2 mb-4">
                     Employee Register
                 </div>
                 <div class="mb-4">
@@ -35,20 +35,20 @@
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-normal mb-2">
-                        Email
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        name="email" v-model="form.email" type="email" required autofocus placeholder="Email" 
-                    />
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-normal mb-2">
                         Phone
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         name="name" v-model="form.phone" type="text" required autofocus placeholder="Phone"
+                    />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-normal mb-2">
+                        Email
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        name="email" v-model="form.email" type="email" required autofocus placeholder="Email" 
                     />
                 </div>
                 <div class="mb-6">

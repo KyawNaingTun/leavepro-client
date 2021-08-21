@@ -68,7 +68,7 @@ export default{
                         this.$store.dispatch('user/login', response)
                         // redirect to intended route
                         this.$router.push({
-                            path: this.intendedRoute
+                            name: 'home'
                         })
                     }
                 })
